@@ -36,7 +36,7 @@ def even_integers(number):
 @app.route('/<int:number>/prime')
 def prime_integers(number):
     string = ""
-    for i in range(1, number+1):
+    for i in range(2, number+1):
         if is_prime(i):
             string += str(i) + " "
     return string
