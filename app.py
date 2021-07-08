@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -10,36 +10,40 @@ def hello():
 
 @app.route('/<int:number>')
 def all_integers(number):
-    string = ""
+    arr = []
     for i in range(1, number+1):
-        string += str(i) + " "
-    return string
+        arr.append(i)
+
+    return render_template('integers.html', num_list=arr)
 
 
 @app.route('/<int:number>/odd')
 def odd_integers(number):
-    string = ""
+    arr = []
     for i in range(1, number+1, 2):
-        string += str(i) + " "
-    return string
+        arr.append(i)
+
+    return render_template('integers.html', num_list=arr)
 
 
 @app.route('/<int:number>/even')
 def even_integers(number):
-    string = ""
+    arr = []
     if number > 1:
         for i in range(2, number+1, 2):
-            string += str(i) + " "
-    return string
+            arr.append(i)
+
+    return render_template('integers.html', num_list=arr)
 
 
 @app.route('/<int:number>/prime')
 def prime_integers(number):
-    string = ""
+    arr = []
     for i in range(2, number+1):
         if is_prime(i):
-            string += str(i) + " "
-    return string
+            arr.append(i)
+
+    return render_template('integers.html', num_list=arr)
 
 
 def is_prime(num):
